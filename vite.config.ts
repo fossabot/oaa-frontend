@@ -38,7 +38,7 @@ export default defineConfig(({ command, mode }) => {
                 registerType: 'autoUpdate',
                 includeAssets: [],
                 manifest: {
-                    name: '四川轻化工大学 开放原子开源协会',
+                    name: '青蟹',
                     short_name: '青蟹',
                     description:
                         '由本校大学生运营的计算机协会，专注于算法学习和项目实践，涉及前后端、嵌入式、操作系统等多个领域，让同学们敢于探索新技术',
