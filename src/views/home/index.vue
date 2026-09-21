@@ -11,18 +11,22 @@
                     <span class="cursor"></span>
                 </h1>
                 <div class="links">
-                    <a href="https://github.com/suse-edu-cn" target="_blank" rel="noopener noreferrer">
-                        关注 GitHub
-                        <i class="pi pi-arrow-up-right"></i>
-                    </a>
-                    <a
-                        href="https://github.com/suse-edu-cn/suse-oaa-app/releases"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        获取青蟹 App
-                        <i class="pi pi-arrow-up-right"></i>
-                    </a>
+                    <div>
+                        <a href="https://github.com/suse-edu-cn" target="_blank" rel="noopener noreferrer">
+                            关注 GitHub
+                            <i class="pi pi-arrow-up-right"></i>
+                        </a>
+                    </div>
+                    <div>
+                        <a
+                            href="https://github.com/suse-edu-cn/suse-oaa-app/releases"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            获取青蟹 App
+                            <i class="pi pi-arrow-up-right"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="right">
@@ -47,7 +51,7 @@
     margin-top: 24px;
 
     a {
-        display: block;
+        display: inline-block;
         line-height: 2;
         font-size: var(--link-font-size);
         transition: all 0.2s;
