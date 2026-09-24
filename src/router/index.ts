@@ -1,8 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import cookies from 'js-cookie'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 import setToast from '@/utils/setToast'
 import HomeView from '@/views/home/index.vue'
+
+// 路由切换顶部加载条
+NProgress.configure({ showSpinner: false })
 
 const router = createRouter({
     history: createWebHistory(),
@@ -34,6 +39,8 @@ const router = createRouter({
 })
 
 router.beforeEach((to) => {
+    NProgress.start()
+
     const isAuthed = Boolean(cookies.get('token'))
     if (to.meta.requiresAuth !== false && !isAuthed) {
         setToast('error', '未登录', '请先登录以访问该页面')
@@ -41,6 +48,15 @@ router.beforeEach((to) => {
     }
 
     return true
+})
+
+router.afterEach(() => {
+    NProgress.done()
+})
+
+// chunk 加载失败（如发版后旧 hash 失效）时收起，避免进度条卡住
+router.onError(() => {
+    NProgress.done()
 })
 
 export default router
