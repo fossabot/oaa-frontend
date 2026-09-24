@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import { RouterLink, useRouter } from 'vue-router'
+import { computed, onMounted, ref } from 'vue'
+import { RouterLink, useRoute, useRouter } from 'vue-router'
 import { Menu } from 'primevue'
 import type { MenuItem } from 'primevue/menuitem'
 import cookies from 'js-cookie'
@@ -11,7 +11,11 @@ import request from '@/utils/request'
 import setToast from '@/utils/setToast'
 
 const authStore = useAuthStore()
+const route = useRoute()
 const router = useRouter()
+
+// 首页不显示 header 下边框
+const bordered = computed(() => route.path !== '/')
 // 登录状态点击用户头像的下拉菜单
 const userMenu = ref<{ toggle: (event: Event) => void } | null>(null)
 
@@ -54,7 +58,7 @@ const userItems: MenuItem[] = [
 </script>
 
 <template>
-    <header>
+    <header :class="{ bordered }">
         <div class="left">
             <router-link to="/">青蟹</router-link>
         </div>
@@ -74,10 +78,13 @@ const userItems: MenuItem[] = [
 <style lang="less" scoped>
 header {
     display: flex;
-    border-bottom: 1px solid #ddd;
     line-height: 3.75rem;
     font-size: 1rem;
     padding: 0 var(--e-content-h-padding);
+
+    &.bordered {
+        border-bottom: 1px solid #ddd;
+    }
 
     .left {
         font-weight: 600;
