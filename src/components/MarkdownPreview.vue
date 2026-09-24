@@ -14,5 +14,5 @@ defineProps<{
 </script>
 
 <template>
-    <MdPreview :model-value="content" />
+    <MdPreview :model-value="content" no-mermaid no-echarts />
 </template>
