@@ -1,6 +1,15 @@
 name: Build
 
-on: push
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - '**'
+            - '!**.md'
+            - '!.github/**'
+            - '.github/workflows/**'
+    pull_request:
 
 jobs:
     build:
@@ -14,7 +23,7 @@ jobs:
             - name: Setup Node
               uses: actions/setup-node@v7
               with:
-                  node-version: 24
+                  node-version: 26
 
             - name: Setup pnpm
               uses: pnpm/action-setup@v6
