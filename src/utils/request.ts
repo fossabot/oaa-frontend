@@ -34,11 +34,7 @@ async function doRefresh(): Promise<boolean> {
         const resp = await instance.request<ApiResponse<{ token: string; refresh_token: string }>>({
             url: '/auth/refresh',
             method: 'POST',
-            data: {
-                refresh_token: refreshToken,
-                user_id: userId,
-                device: 'web',
-            },
+            data: { refresh_token: refreshToken },
             headers: authStore.token ? { Authorization: `Bearer ${authStore.token}` } : {},
         })
 
