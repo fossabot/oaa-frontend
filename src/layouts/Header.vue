@@ -15,7 +15,7 @@ const route = useRoute()
 const router = useRouter()
 
 // 首页不显示 header 下边框
-const bordered = computed(() => route.path !== '/')
+const isIndex = computed(() => route.path == '/')
 // 登录状态点击用户头像的下拉菜单
 const userMenu = ref<{ toggle: (event: Event) => void } | null>(null)
 
@@ -58,11 +58,10 @@ const userItems: MenuItem[] = [
 </script>
 
 <template>
-    <header :class="{ bordered }">
+    <header :class="{ index: isIndex }">
         <div class="left">
             <router-link to="/">青蟹</router-link>
         </div>
-        <div class="grow"></div>
         <div class="right">
             <router-link to="#">比赛中心</router-link>
             <div v-if="authStore.userInfo" class="user" @click="userMenu?.toggle($event)">
@@ -78,20 +77,19 @@ const userItems: MenuItem[] = [
 <style lang="less" scoped>
 header {
     display: flex;
+    justify-content: space-between;
     line-height: 3.75rem;
     font-size: 1rem;
     padding: 0 var(--e-content-h-padding);
+    border-bottom: 1px solid #ddd;
 
-    &.bordered {
-        border-bottom: 1px solid #ddd;
+    &.index {
+        padding: 8px var(--e-content-h-padding);
+        border-bottom: none;
     }
 
     .left {
         font-weight: 600;
-    }
-
-    .grow {
-        flex-grow: 1;
     }
 
     .right {
